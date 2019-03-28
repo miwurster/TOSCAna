@@ -2,6 +2,7 @@ package org.opentosca.toscana.core.parse;
 
 import java.io.FileNotFoundException;
 
+import org.junit.Ignore;
 import org.opentosca.toscana.core.BaseSpringTest;
 import org.opentosca.toscana.core.csar.Csar;
 import org.opentosca.toscana.core.csar.CsarDao;
@@ -11,6 +12,7 @@ import org.opentosca.toscana.model.EffectiveModelFactory;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+@Ignore
 public class EntrypointDetectorTest extends BaseSpringTest {
 
     @Autowired

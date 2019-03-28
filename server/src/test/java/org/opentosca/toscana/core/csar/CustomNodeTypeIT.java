@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import org.junit.Ignore;
 import org.opentosca.toscana.core.BaseSpringTest;
 import org.opentosca.toscana.core.plugin.lifecycle.LifecyclePhase;
 import org.opentosca.toscana.core.testdata.TestCsars;
@@ -18,6 +19,7 @@ import static org.junit.Assert.assertEquals;
  Tests whether custom node types are handled correctly: The toscana node type definitions must get injected into
  the user service template or else the winery parser will complain (unknown type..)
  */
+@Ignore
 public class CustomNodeTypeIT extends BaseSpringTest {
 
     @Autowired

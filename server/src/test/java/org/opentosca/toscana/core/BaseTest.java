@@ -30,6 +30,7 @@ public abstract class BaseTest {
 
     // "user.dir" is module root
     protected static final File PROJECT_ROOT = new File(System.getProperty("user.dir"));
+
     private final static Logger logger = LoggerFactory.getLogger("test logger");
 
     @Rule

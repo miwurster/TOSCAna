@@ -3,6 +3,7 @@ package org.opentosca.toscana.core.transformation;
 import java.io.FileNotFoundException;
 import java.util.Optional;
 
+import org.junit.Ignore;
 import org.opentosca.toscana.api.exceptions.PlatformNotFoundException;
 import org.opentosca.toscana.core.BaseSpringTest;
 import org.opentosca.toscana.core.csar.Csar;
@@ -32,6 +33,7 @@ import static org.opentosca.toscana.core.testdata.TestPlugins.PLATFORM1;
 import static org.opentosca.toscana.core.testdata.TestPlugins.PLATFORM_NOT_SUPPORTED;
 import static org.opentosca.toscana.core.testdata.TestPlugins.PLATFORM_PASSING_INPUT_REQUIRED_DUMMY;
 
+@Ignore
 public class TransformationServiceImplTest extends BaseSpringTest {
 
     private static final int WAIT_DELAY_MS = 100;

@@ -6,12 +6,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-import org.opentosca.toscana.core.BaseUnitTest;
-import org.opentosca.toscana.core.plugin.PluginFileAccess;
-
 import org.apache.commons.io.IOUtils;
 import org.junit.Before;
 import org.junit.Test;
+import org.opentosca.toscana.core.BaseUnitTest;
+import org.opentosca.toscana.core.plugin.PluginFileAccess;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;

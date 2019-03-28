@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project
-    xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>org.opentosca.toscana</groupId>
         <artifactId>toscana</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
+
     <artifactId>server</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
+
     <!-- jitpack.io builds maven dependencies from git repos -->
     <repositories>
         <repository>
@@ -39,36 +38,25 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- web app -->
-        <dependency>
-            <groupId>org.opentosca.toscana</groupId>
-            <artifactId>app</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        
         <!--Project Lombok-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.16.18</version>
         </dependency>
-        
         <!--JGraphT-->
         <dependency>
             <groupId>org.jgrapht</groupId>
             <artifactId>jgrapht-core</artifactId>
             <version>1.1.0</version>
         </dependency>
-
         <!--Readme Builder-->
         <dependency>
             <groupId>com.atlassian.commonmark</groupId>
             <artifactId>commonmark</artifactId>
             <version>0.11.0</version>
         </dependency>
-
         <!--Cloudformation plugin-->
-        <!--cloudformation-builder-->
         <dependency>
             <groupId>com.github.StuPro-TOSCAna</groupId>
             <artifactId>cloudformation-builder</artifactId>
@@ -80,15 +68,12 @@
             <artifactId>aws-java-sdk-ec2</artifactId>
         </dependency>
         <!--Apache Http Client -->
-        <!-- needed for AWS Java SDK-->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.5.4</version>
         </dependency>
-        
         <!--CloudFoundry Plugin-->
-        <!--CloudFoundry java-client-->
         <dependency>
             <groupId>org.cloudfoundry</groupId>
             <artifactId>cloudfoundry-client-reactor</artifactId>
@@ -109,7 +94,6 @@
             <artifactId>reactor-netty</artifactId>
             <version>0.7.1.RELEASE</version>
         </dependency>
-        
         <!--Kubernetes Plugin-->
         <dependency>
             <groupId>io.fabric8</groupId>
@@ -144,14 +128,12 @@
             <artifactId>semver4j</artifactId>
             <version>2.2.0</version>
         </dependency>
-        
         <!-- Winery -->
         <dependency>
-        <groupId>com.github.eclipse.winery</groupId>
-        <artifactId>org.eclipse.winery.yaml.common</artifactId>
-        <version>78ef7554a56ae8458fc1aeb4e7fa3c7e64bafdbe</version>
+            <groupId>com.github.eclipse.winery</groupId>
+            <artifactId>org.eclipse.winery.yaml.common</artifactId>
+            <version>78ef7554a56ae8458fc1aeb4e7fa3c7e64bafdbe</version>
         </dependency>
-        
         <!-- Spring Dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -170,7 +152,6 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-        
         <!-- Swagger Dependencies (Springfox) -->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -182,7 +163,6 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.8.0</version>
         </dependency>
-        
         <!-- Test Dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -208,113 +188,14 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>add-source</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>add-test-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>src/integration/java</source>
-                            </sources>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>add-resource</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>add-test-resource</goal>
-                        </goals>
-                        <configuration>
-                            <resources>
-                                <resource>
-                                    <directory>src/integration/resources</directory>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <skipTests>${skip.unit.tests}</skipTests>
-                    <groups>org.opentosca.toscana.UnitTest</groups>
-                    <excludedGroups>org.opentosca.toscana.IntegrationTest</excludedGroups>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <!--<id>integration-tests</id>-->
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                        <configuration>
-                            <skipTests>${skip.integration.tests}</skipTests>
-                            <includes>
-                                <include>**/*.java</include>
-                            </includes>
-                            <groups>org.opentosca.toscana.IntegrationTest</groups>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.7.201606060606</version>
-                <executions>
-                    <execution>
-                        <id>prep-unit</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>prep-integration</id>
-                        <goals>
-                            <goal>prepare-agent-integration</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report-integration</id>
-                        <phase>integration-test</phase>
-                        <goals>
-                            <goal>report-integration</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
+
 </project>
